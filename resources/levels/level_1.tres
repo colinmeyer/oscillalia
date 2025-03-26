@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://b6hgixj6qqmlt"]
+
+[ext_resource type="Script" path="res://resources/level_data.gd" id="1_2ek3k"]
+
+[resource]
+script = ExtResource("1_2ek3k")
+level_name = "Level 1"
+bpm = 120.0
+npc_spawns = [{"beat": 4, "position_x": 0.25, "type": "oscillator"}, {"beat": 6, "position_x": 0.75, "type": "oscillator"}, {"beat": 8, "position_x": 0.5, "type": "percussion"}, {"beat": 10, "position_x": 0.25, "type": "oscillator"}, {"beat": 12, "position_x": 0.75, "type": "percussion"}, {"beat": 14, "position_x": 0.5, "type": "oscillator"}, {"beat": 16, "position_x": 0.25, "type": "percussion"}]
+level_duration = 30.0

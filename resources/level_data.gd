@@ -7,3 +7,7 @@ extends Resource
 @export var background_scene: PackedScene
 @export var npc_spawns: Array = []
 @export var level_duration: float = 60.0  # Duration in seconds
+
+func _init() -> void:
+	# Default initialization to avoid errors when used without song_file
+	pass

@@ -1,11 +1,11 @@
 class_name GameUI
 extends CanvasLayer
 
-@export var score_label: Label
-@export var combo_label: Label
-@export var accuracy_label: Label
-@export var pause_button: Button
-@export var level_name_label: Label
+@onready var score_label: Label = $Control/ScoreLabel
+@onready var combo_label: Label = $Control/ComboLabel
+@onready var accuracy_label: Label = $Control/AccuracyLabel
+@onready var pause_button: Button = $Control/PauseButton
+@onready var level_name_label: Label = $Control/LevelNameLabel
 
 signal pause_requested
 signal resume_requested
