@@ -39,13 +39,89 @@ A rhythm game where players feel immersed in a cosmic journey, using intuitive p
 
 ## Building and Running
 
-1. Open the project in Godot 4.x
-2. Run the main scene
-3. If you're interested in contributing, see CONTRIBUTING.md
+### Requirements
+- Godot Engine 4.x (4.4+ recommended)
+- For mobile development: Android SDK or Xcode for iOS
+
+### Opening the Project
+1. Open Godot Engine
+2. Click "Import" and select the project.godot file
+3. Wait for Godot to import all resources
+
+### Running the Game
+1. After opening the project, locate `res://scenes/Main.tscn` in the FileSystem panel
+2. Double-click to open this scene if it's not already open
+3. Click the "Play" button in the top-right corner or press F5 to run the game
+4. The game should start at the main menu
+   - Click "Play" to start the game
+   - Use mouse drag (or touch on mobile) to move the player character horizontally
+   - The objective is to position your character near NPCs as they reach the interaction zone
+
+### Game Controls
+- **Mouse/Touch**: Click and drag horizontally to move the player character
+- **Interaction**: Move close to NPCs as they arrive at your position to trigger sounds
+- **Timing**: Perfect timing yields more points (Perfect, Great, Good, Miss)
+- **Menu**: Click the pause button to pause the game
+- **Exit**: Press Escape key to quit (desktop) or use the back button (mobile)
+
+### Debug Features
+- Press F8 during gameplay to skip to the next level (developer mode only)
+- Press F1 to toggle performance statistics
+
+For mobile testing:
+1. Go to Project → Export
+2. Select Android or iOS
+3. Configure your export settings and SDK paths
+4. Click "Export Project" and save the APK/IPA file
+5. Install on your device for testing
+
+### Development Commands
+Run these commands from the project directory:
+
+```bash
+# Validate project files
+godot --headless --script test_script.gd
+
+# Export the project (creates a packaged build)
+godot --headless --export-pack "Android" oscillalia.zip
+
+# Build for specific platforms (requires export templates)
+godot --headless --export "Android" oscillalia.apk
+```
+
+### Adding Audio Files
+The project requires audio files to be placed in:
+- Music tracks: `assets/audio/music/`  
+- Sound effects: `assets/audio/sfx/`
+
+To add your own audio:
+1. Place audio files (OGG or WAV recommended) in the appropriate directories
+2. Godot will automatically import them
+3. To use a music track in a level:
+   - Open the Level Editor scene
+   - Select the level_data resource
+   - In the Inspector, assign your music track to the "Song File" property
+4. To use sound effects for NPCs:
+   - Open the NPC scene you want to modify
+   - In the Inspector, assign your sound effect to the "Sound To Play" property
+
+For testing purposes, if you don't have audio files, the game will still run without them, but there will be no sound. You might see error messages in the console related to missing audio resources - these can be safely ignored during initial testing.
+
+## Testing
+
+The project includes a test script (`test_script.gd`) that validates critical components:
+- Scene loading validation
+- Resource availability
+- Script compilation
+
+Run the test with:
+```bash
+godot --headless --script test_script.gd
+```
 
 ## License
 
-[Insert license information here]
+MIT License - See LICENSE file for details
 
 ## Overview
 
