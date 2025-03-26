@@ -12,7 +12,10 @@ var interaction_area: Area2D
 
 func _ready() -> void:
 	interaction_area = $InteractionArea
-	interaction_area.area_entered.connect(_on_area_entered)
+	# Not using area-based detection anymore, but keeping the area for visual reference
+	
+	# Add to group so NPCs can find us
+	add_to_group("player")
 	
 	screen_width = get_viewport_rect().size.x
 	target_position = global_position
@@ -39,9 +42,13 @@ func _physics_process(delta: float) -> void:
 	
 	global_position = new_position
 
-func _on_area_entered(area: Area2D) -> void:
-	if area is NPCBase and !area.was_interacted:
-		area.interact()
-		
-		# Forward the score signal
-		# We'll need to connect this signal in the game scene
+func _draw() -> void:
+	# Draw the interaction radius around the player (visual only)
+	draw_circle(Vector2.ZERO, 80.0, Color(1.0, 1.0, 1.0, 0.2))
+	
+	# Reference the Visual node explicitly
+	var visual = $Visual
+	
+func _process(_delta: float) -> void:
+	# Constantly redraw to show the interaction radius
+	queue_redraw()

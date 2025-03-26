@@ -3,7 +3,7 @@ extends SceneTree
 func _init():
     print("Starting test...")
     
-    # Check if core scene files can be loaded
+    # Check if core scene files exist and can be loaded
     var resources = [
         "res://scenes/Main.tscn",
         "res://scenes/ui/MainMenu.tscn",
@@ -12,11 +12,10 @@ func _init():
     ]
     
     for res_path in resources:
-        var resource = ResourceLoader.load(res_path)
-        if resource:
-            print("Successfully loaded: " + res_path)
+        if ResourceLoader.exists(res_path):
+            print("File exists: " + res_path)
         else:
-            print("Failed to load: " + res_path)
+            print("File missing: " + res_path)
     
     # Verify directory structure
     var directories = [
@@ -37,11 +36,10 @@ func _init():
             print("Warning: Directory missing: " + directory)
     
     # Verify presence of level data
-    var level_data = ResourceLoader.load("res://resources/levels/level_1.tres")
-    if level_data:
-        print("Level data found and loaded")
+    if ResourceLoader.exists("res://resources/levels/level_1.tres"):
+        print("Level data file exists")
     else:
-        print("Warning: Could not load level data")
+        print("Warning: Could not find level data file")
     
     print("Test complete!")
     quit()

@@ -89,8 +89,15 @@ func spawn_npc(spawn_data: Dictionary) -> void:
 	print("Warning: No available NPC in pool for type: " + npc_type)
 
 func activate_npc(npc: NPCBase, beat: float, spawn_position: Vector2) -> void:
+	if not npc.is_connected("interaction_triggered", _on_npc_interaction_triggered):
+		npc.interaction_triggered.connect(_on_npc_interaction_triggered)
+	
 	npc.initialize(spawn_position, beat)
 	active_npcs.append(npc)
+	
+func _on_npc_interaction_triggered(points: int, accuracy: String) -> void:
+	# Forward the signal to the level
+	npc_scored.emit(points, accuracy)
 
 func process_active_npcs() -> void:
 	var npcs_to_remove = []
