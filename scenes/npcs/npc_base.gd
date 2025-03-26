@@ -36,12 +36,18 @@ func interact() -> void:
 		return
 		
 	was_interacted = true
-	AudioManager.play_sound(sound_to_play)
+	
+	if Engine.has_singleton("AudioManager"):
+		var audio_manager = Engine.get_singleton("AudioManager")
+		audio_manager.play_sound(sound_to_play)
 	
 	# Visual feedback can be implemented here
 	
 	# Get timing accuracy
-	var accuracy = RhythmManager.get_timing_accuracy(target_beat)
+	var accuracy = "Miss"
+	if Engine.has_singleton("RhythmManager"):
+		var rhythm_manager = Engine.get_singleton("RhythmManager")
+		accuracy = rhythm_manager.get_timing_accuracy(target_beat)
 	
 	# Calculate score based on accuracy
 	var score = 0

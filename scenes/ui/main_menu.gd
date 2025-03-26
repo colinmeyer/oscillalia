@@ -1,10 +1,12 @@
 class_name MainMenu
 extends Control
 
-@export var play_button: Button
-@export var settings_button: Button
-@export var quit_button: Button
-@export var level_select_container: Control
+@onready var play_button: Button = $VBoxContainer/PlayButton
+@onready var settings_button: Button = $VBoxContainer/SettingsButton
+@onready var quit_button: Button = $VBoxContainer/QuitButton
+@onready var level_select_container: Control = $LevelSelectContainer
+@onready var level1_button: Button = $LevelSelectContainer/VBoxContainer/Level1Button
+@onready var back_button: Button = $LevelSelectContainer/VBoxContainer/BackButton
 
 func _ready() -> void:
 	if play_button:
@@ -18,6 +20,12 @@ func _ready() -> void:
 		
 	if level_select_container:
 		level_select_container.visible = false
+		
+	if level1_button:
+		level1_button.pressed.connect(func(): start_level("res://resources/levels/level_1.tres"))
+		
+	if back_button:
+		back_button.pressed.connect(func(): level_select_container.visible = false)
 
 func _on_play_button_pressed() -> void:
 	if level_select_container:

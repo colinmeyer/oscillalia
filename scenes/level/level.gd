@@ -22,6 +22,8 @@ func _ready() -> void:
 	ui_layer = $GameUI
 	
 	player.score_updated.connect(_on_score_updated)
+	ui_layer.pause_requested.connect(pause_level)
+	ui_layer.resume_requested.connect(resume_level)
 	
 	if level_data:
 		setup_level()
@@ -47,7 +49,10 @@ func start_level() -> void:
 		return
 		
 	game_state = "playing"
-	RhythmManager.start_song(level_data.song_file, level_data.bpm)
+	
+	if Engine.has_singleton("RhythmManager"):
+		var rhythm_manager = Engine.get_singleton("RhythmManager")
+		rhythm_manager.start_song(level_data.song_file, level_data.bpm)
 	
 	# Start background scrolling
 	# This will be handled by the background manager based on BPM
@@ -68,12 +73,20 @@ func resume_level() -> void:
 
 func complete_level() -> void:
 	game_state = "completed"
-	RhythmManager.stop_song()
+	
+	if Engine.has_singleton("RhythmManager"):
+		var rhythm_manager = Engine.get_singleton("RhythmManager")
+		rhythm_manager.stop_song()
+		
 	level_completed.emit(score, max_combo)
 
 func fail_level() -> void:
 	game_state = "failed"
-	RhythmManager.stop_song()
+	
+	if Engine.has_singleton("RhythmManager"):
+		var rhythm_manager = Engine.get_singleton("RhythmManager")
+		rhythm_manager.stop_song()
+		
 	level_failed.emit()
 
 func _on_score_updated(points: int, accuracy: String) -> void:
@@ -91,7 +104,8 @@ func _on_score_updated(points: int, accuracy: String) -> void:
 	ui_layer.show_accuracy(accuracy)
 
 func _process(delta: float) -> void:
-	if game_state == "playing":
+	if game_state == "playing" and Engine.has_singleton("RhythmManager"):
+		var rhythm_manager = Engine.get_singleton("RhythmManager")
 		# Check if song is finished
-		if RhythmManager.playing and RhythmManager.song_position >= level_data.level_duration:
+		if rhythm_manager.playing and rhythm_manager.song_position >= level_data.level_duration:
 			complete_level()

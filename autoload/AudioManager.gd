@@ -23,7 +23,9 @@ func stop_song() -> void:
 	music_player.stop()
 
 func get_playback_position() -> float:
-	return music_player.get_playback_position()
+	if music_player.playing:
+		return music_player.get_playback_position()
+	return 0.0
 
 func play_sound(sound: AudioStream) -> void:
 	if sound == null:

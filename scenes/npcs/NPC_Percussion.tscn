@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmv5m7ciygnx"]
+
+[ext_resource type="PackedScene" uid="uid://dsxvhgapskpyo" path="res://scenes/npcs/NPC_Base.tscn" id="1_hxfx8"]
+[ext_resource type="Script" path="res://scenes/npcs/npc_percussion.gd" id="2_qgfm8"]
+
+[node name="NPC_Percussion" instance=ExtResource("1_hxfx8")]
+script = ExtResource("2_qgfm8")
+percussion_type = "kick"
+
+[node name="ColorRect" parent="." index="0"]
+color = Color(0.980392, 0.419608, 0.447059, 1)

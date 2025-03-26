@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6i66c5ck0v5k"]
+
+[ext_resource type="PackedScene" uid="uid://dsxvhgapskpyo" path="res://scenes/npcs/NPC_Base.tscn" id="1_s2afu"]
+[ext_resource type="Script" path="res://scenes/npcs/npc_oscillator.gd" id="2_12dxu"]
+
+[node name="NPC_Oscillator" instance=ExtResource("1_s2afu")]
+script = ExtResource("2_12dxu")
+note_pitch = "C4"
+
+[node name="ColorRect" parent="." index="0"]
+color = Color(0.286275, 0.631373, 0.956863, 1)

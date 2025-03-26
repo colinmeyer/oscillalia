@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsxvhgapskpyo"]
+
+[ext_resource type="Script" path="res://scenes/npcs/npc_base.gd" id="1_ql5a0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m3jm1"]
+radius = 24.0
+
+[node name="NPC_Base" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_ql5a0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.745098, 0.745098, 0.745098, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m3jm1")

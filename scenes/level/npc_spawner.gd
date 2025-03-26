@@ -14,10 +14,18 @@ var current_time: float = 0.0
 func _ready() -> void:
 	screen_width = get_viewport_rect().size.x
 	initialize_object_pools()
-	RhythmManager.beat.connect(_on_beat)
+	
+	if Engine.has_singleton("RhythmManager"):
+		var rhythm_manager = Engine.get_singleton("RhythmManager")
+		rhythm_manager.beat.connect(_on_beat)
 
 func _process(delta: float) -> void:
-	current_time = RhythmManager.song_position
+	if Engine.has_singleton("RhythmManager"):
+		var rhythm_manager = Engine.get_singleton("RhythmManager")
+		current_time = rhythm_manager.song_position
+	else:
+		current_time += delta
+		
 	check_spawn_npcs()
 	process_active_npcs()
 
@@ -55,7 +63,11 @@ func check_spawn_npcs() -> void:
 
 func is_time_to_spawn(spawn_data: Dictionary) -> bool:
 	var spawn_beat = spawn_data["beat"]
-	var current_beat = RhythmManager.song_position_in_beats
+	var current_beat = 0.0
+	
+	if Engine.has_singleton("RhythmManager"):
+		var rhythm_manager = Engine.get_singleton("RhythmManager")
+		current_beat = rhythm_manager.song_position_in_beats
 	
 	# Calculate how many beats ahead we need to spawn
 	# This depends on speed and screen height

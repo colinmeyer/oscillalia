@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5vpo6vmg5a54"]
+
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_mxufb"]
+[ext_resource type="PackedScene" uid="uid://cu3l14mbb42m1" path="res://scenes/player/Player.tscn" id="2_k8ufx"]
+[ext_resource type="PackedScene" uid="uid://cfq6a57n6y0ex" path="res://scenes/level/BackgroundManager.tscn" id="3_n1ihl"]
+[ext_resource type="PackedScene" uid="uid://p17pxqnl6etp" path="res://scenes/level/NPCSpawner.tscn" id="4_0pcmg"]
+[ext_resource type="PackedScene" uid="uid://bkrgjnhyuobbo" path="res://scenes/ui/GameUI.tscn" id="5_eggpe"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_mxufb")
+
+[node name="BackgroundManager" parent="." instance=ExtResource("3_n1ihl")]
+
+[node name="Player" parent="." instance=ExtResource("2_k8ufx")]
+position = Vector2(360, 960)
+
+[node name="NPCSpawner" parent="." instance=ExtResource("4_0pcmg")]
+
+[node name="GameUI" parent="." instance=ExtResource("5_eggpe")]
