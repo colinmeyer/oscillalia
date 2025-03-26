@@ -21,9 +21,14 @@ func _ready() -> void:
 	background_manager = $BackgroundManager
 	ui_layer = $GameUI
 	
+	# Connect signals
 	player.score_updated.connect(_on_score_updated)
+	npc_spawner.npc_scored.connect(_on_score_updated)
 	ui_layer.pause_requested.connect(pause_level)
 	ui_layer.resume_requested.connect(resume_level)
+	
+	# Make this node findable by name for NPCs
+	name = "GameLevel"
 	
 	if level_data:
 		setup_level()
@@ -109,3 +114,18 @@ func _process(delta: float) -> void:
 		# Check if song is finished
 		if rhythm_manager.playing and rhythm_manager.song_position >= level_data.level_duration:
 			complete_level()
+			
+	# Draw interaction zone line
+	queue_redraw()
+	
+func _draw() -> void:
+	# Draw a horizontal line to indicate the interaction zone
+	if player:
+		var line_position = player.position.y 
+		var viewport_width = get_viewport_rect().size.x
+		draw_line(
+			Vector2(0, line_position),
+			Vector2(viewport_width, line_position),
+			Color(1.0, 1.0, 1.0, 0.2),
+			3.0 # Line width
+		)

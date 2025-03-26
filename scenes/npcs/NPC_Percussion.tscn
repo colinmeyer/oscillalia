@@ -1,11 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmv5m7ciygnx"]
 
-[ext_resource type="PackedScene" uid="uid://dsxvhgapskpyo" path="res://scenes/npcs/NPC_Base.tscn" id="1_hxfx8"]
-[ext_resource type="Script" path="res://scenes/npcs/npc_percussion.gd" id="2_qgfm8"]
+[ext_resource type="Script" path="res://scenes/npcs/npc_percussion.gd" id="1_yl0c1"]
 
-[node name="NPC_Percussion" instance=ExtResource("1_hxfx8")]
-script = ExtResource("2_qgfm8")
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnogq"]
+radius = 24.0
+
+[node name="NPC_Percussion" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_yl0c1")
+interaction_radius = 80.0
+interaction_zone_y = 960.0
 percussion_type = "kick"
 
-[node name="ColorRect" parent="." index="0"]
+[node name="Visual" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
 color = Color(0.980392, 0.419608, 0.447059, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pnogq")
