@@ -4,3 +4,8 @@
 
 [node name="NPCSpawner" type="Node2D"]
 script = ExtResource("1_biyui")
+continuous_spawning = true
+spawn_rate_min = 1.0
+spawn_rate_max = 3.0
+spawn_count_min = 1
+spawn_count_max = 2

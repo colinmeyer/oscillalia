@@ -103,6 +103,11 @@ layout_mode = 2
 text = "Level Select"
 horizontal_alignment = 1
 
+[node name="EndlessModeButton" type="Button" parent="LevelSelectContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Endless Mode"
+
 [node name="Level1Button" type="Button" parent="LevelSelectContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
