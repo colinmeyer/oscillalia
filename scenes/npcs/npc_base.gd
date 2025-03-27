@@ -10,7 +10,7 @@ signal interaction_triggered(points, accuracy)
 @export var interaction_radius: float = 80.0  # Radius for proximity detection
 @export var interaction_zone_y: float = 960.0  # Y position of the interaction zone
 
-var speed: float = 200.0
+var speed: float = 300.0  # Increased speed for better gameplay
 var is_active: bool = false
 var was_interacted: bool = false
 var player_ref = null  # Removed type annotation
